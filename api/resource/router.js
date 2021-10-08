@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const Resource = require('./model')
+const { checkPayload } = require('./middleware')
 
 router.get('/', (req, res, next) => {
     Resource.getAll()
@@ -9,8 +10,12 @@ router.get('/', (req, res, next) => {
         .catch(next)
 })
 
-router.post('/', (req, res, next) => {
-    console.log('post')
+router.post('/', checkPayload, (req, res, next) => {
+    Resource.create(req.body)
+        .then(newResource => {
+            res.status(201).json(newResource)
+        })
+        .catch(next)
 })
 
 module.exports = router
