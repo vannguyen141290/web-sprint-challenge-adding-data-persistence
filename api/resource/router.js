@@ -1,9 +1,12 @@
 const router = require('express').Router()
+const Resource = require('./model')
 
-// [{"resource_id":1,"resource_name":"foo","resource_description":null}]`
+router.get('/', async (req, res, next) => {
+    try {
+        const resources = await Resource.getAll()
+        res.status(200).json(resources)
+    } catch (err) { next(err) }
 
-router.get('/', (req, res, next) => {
-    console.log('get')
 })
 
 router.post('/', (req, res, next) => {
