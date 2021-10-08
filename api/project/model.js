@@ -18,6 +18,13 @@ const getAll = async () => {
     return result
 }
 
+// const create = async project => {
+//     await db('projects')
+//         .insert(project)
+//     const result = await getAll()
+//     return result
+// }
+
 const create = async project => {
     const id = await db('projects')
         .insert(project)
