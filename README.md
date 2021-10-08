@@ -41,28 +41,28 @@ Add `"start"`. `"server"`, `"migrate"` and `"rollback"` scripts to the `package.
 
 Build the migration(s) in Knex inside the `data/migrations` folder using appropriate data types and constraints. **You must use the table names and the column names described below.** To give a primary key a name different than `id`, do `table.increments("project_id")` instead of `table.increments()`.
 
-- [ ] A **project** is what needs to be done and is stored in a `projects` table with the following columns:
+- [x ] A **project** is what needs to be done and is stored in a `projects` table with the following columns:
 
   - [ ] `project_id` - primary key
   - [ ] `project_name` - required
   - [ ] `project_description` - optional
   - [ ] `project_completed` - the database defaults it to `false` (integer 0) if not provided
 
-- [ ] A **resource** is anything needed to complete a project and is stored in a `resources` table with the following columns:
+- [ x] A **resource** is anything needed to complete a project and is stored in a `resources` table with the following columns:
 
   - [ ] `resource_id` - primary key
   - [ ] `resource_name` - required and unique
   - [ ] `resource_description` - optional
 
-- [ ] A **task** is one of the steps needed to complete a project and is stored in a `tasks` table with the following columns:
+- [ x] A **task** is one of the steps needed to complete a project and is stored in a `tasks` table with the following columns:
 
   - [ ] `task_id` - primary key
   - [ ] `task_description` - required
   - [ ] `task_notes` - optional
-  - [ ] `task_completed` - the database defaults it to `false` (integer 0) if not provided
+  - [ ] `task_description` - the database defaults it to `false` (integer 0) if not provided
   - [ ] `project_id` - required and points to an actual `project_id` in the `projects` table
 
-- [ ] A **resource assignment** connects a resource and a project, and is stored in a `project_resources` table. You decide what columns to use.
+- [x ] A **resource assignment** connects a resource and a project, and is stored in a `project_resources` table. You decide what columns to use.
 
 ### Required Endpoints
 
@@ -111,8 +111,19 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. Explain the difference between Relational Databases and SQL.
 
-test
+`Relational Database` is a type of database that stores and provide access to data points that are related to one another. Data is grouped into rows and columns. A collection of rows is called a table. Each row represents one distinct record and each column represents attributes to all the records. tables relate to each other through foreign keys.
+`SQL` is a language used to access and manipulate data in relational databases
+
 
 2. Why do tables need a Primary Key?
+
+Primary key ensures the uniqueness of each column in a table. It is also used to link the current table with other tables
+
 3. What is the name given to a table column that references the Primary Key on another table?
+
+`Foreign Key`
+
 4. What do we need in order to have a _many to many_ relationship between two tables?
+
+Usually we create a mutual table which will have its own primary key, the other two basic rows will be the primary keys of the other two tables.
+
