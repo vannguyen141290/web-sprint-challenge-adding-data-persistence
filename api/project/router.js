@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const Project = require('./model')
+const { checkPayload } = require('./middleware')
 
 router.get('/', (req, res, next) => {
     Project.getAll()
@@ -9,8 +10,12 @@ router.get('/', (req, res, next) => {
         .catch(next)
 })
 
-router.post('/', (req, res, next) => {
-    console.log('post')
+router.post('/', checkPayload, (req, res, next) => {
+    Project.create(req.body)
+        .then(newP => {
+            res.status(201).json(newP)
+        })
+        .catch(next)
 })
 
 
