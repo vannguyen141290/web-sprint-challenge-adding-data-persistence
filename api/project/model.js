@@ -22,12 +22,19 @@ const create = async project => {
     const id = await db('projects')
         .insert(project)
     const result = await db('projects as p')
-        .select('p.project_name', 'p.project_description', 'p.project_completed')
+        .select(
+            'p.project_name',
+            'p.project_description',
+            'p.project_completed'
+        )
         .where('project_id', id)
         .first()
     return ({
         ...result,
-        project_completed: result.project_completed === 0 ? false : true
+        project_completed:
+            result.project_completed === 0
+                ? false
+                : true
     })
 }
 
