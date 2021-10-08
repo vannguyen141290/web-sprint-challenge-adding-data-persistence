@@ -18,18 +18,11 @@ const getAll = async () => {
     return result
 }
 
-// const create = async project => {
-//     await db('projects')
-//         .insert(project)
-//     const result = await getAll()
-//     return result
-// }
-
 const create = async project => {
     const id = await db('projects')
         .insert(project)
-    const result = await db('projects')
-        .select('projects.*')
+    const result = await db('projects as p')
+        .select('p.project_name', 'p.project_description', 'p.project_completed')
         .where('project_id', id)
         .first()
     return ({

@@ -3,9 +3,7 @@ function checkPayload(req, res, next) {
     if (
         project_name === undefined ||
         typeof project_name !== 'string' ||
-        !project_name.trim() ||
-        typeof project_description !== 'string' ||
-        project_completed !== undefined && typeof project_completed !== 'boolean'
+        !project_name.trim()
     ) {
         next({
             status: 400,
