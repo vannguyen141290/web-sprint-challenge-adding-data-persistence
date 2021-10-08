@@ -18,7 +18,6 @@ const checkPayload = (req, res, next) => {
         task_description === undefined ||
         typeof task_description !== 'string' ||
         !task_description.trim() ||
-        !!task_completed && typeof task_completed !== 'boolean' ||
         project_id === undefined ||
         typeof project_id !== 'number'
     ) {
