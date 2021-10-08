@@ -4,7 +4,6 @@ const db = require('../../data/dbConfig')
 
 const getAll = () => {
     return db('resources')
-        .select('resources.*')
 }
 
 
